@@ -37,7 +37,6 @@ import static org.hamcrest.core.Is.is;
 
 public class TestUtil {
 	public static final int DROPBOX = 0;
-	public static final int GOOGLE_DRIVE = 1;
 	public static final int ONEDRIVE = 2;
 	public static final int WEBDAV = 3;
 	public static final int LOCAL = 4;

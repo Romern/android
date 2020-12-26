@@ -16,7 +16,7 @@ class LruFileCacheUtil(context: Context) {
 	private val parent: File = context.cacheDir
 
 	enum class Cache {
-		DROPBOX, WEBDAV, ONEDRIVE, GOOGLE_DRIVE
+		DROPBOX, WEBDAV, ONEDRIVE
 	}
 
 	fun resolve(cache: Cache?): File {
@@ -24,7 +24,6 @@ class LruFileCacheUtil(context: Context) {
 			Cache.DROPBOX -> File(parent, "LruCacheDropbox")
 			Cache.WEBDAV -> File(parent, "LruCacheWebdav")
 			Cache.ONEDRIVE -> File(parent, "LruCacheOneDrive")
-			Cache.GOOGLE_DRIVE -> File(parent, "LruCacheGoogleDrive")
 			else -> throw IllegalStateException()
 		}
 	}

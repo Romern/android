@@ -72,7 +72,7 @@ public class VaultListPresenterTest {
 			.withId(3L) //
 			.withName(A_NEW_VAULT_NAME) //
 			.withPath("/trip to the moon") //
-			.withCloudType(CloudType.GOOGLE_DRIVE) //
+			.withCloudType(CloudType.ONEDRIVE) //
 			.withUnlocked(false) //
 			.build();
 

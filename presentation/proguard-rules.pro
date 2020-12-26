@@ -22,16 +22,6 @@
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
-# Google API Client, https://github.com/google/google-api-java-client/blob/dev/google-api-client-assembly/proguard-google-api-client.txt
--keepattributes Signature,RuntimeVisibleAnnotations,AnnotationDefault
--keepclassmembers class * {
-    @com.google.api.client.util.Key <fields>;
-}
--dontwarn com.google.api.client.extensions.android.**
--dontwarn com.google.api.client.googleapis.extensions.android.**
--dontwarn com.google.api.client.googleapis.testing.TestUtils
--dontwarn com.google.android.gms.**
-
 # okhttp3
 -dontwarn okhttp3.**
 -dontwarn okio.**

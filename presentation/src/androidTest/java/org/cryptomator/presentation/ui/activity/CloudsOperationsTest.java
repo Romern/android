@@ -34,7 +34,6 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static java.lang.Thread.sleep;
 import static org.cryptomator.domain.executor.BackgroundTasks.awaitCompleted;
 import static org.cryptomator.presentation.ui.TestUtil.DROPBOX;
-import static org.cryptomator.presentation.ui.TestUtil.GOOGLE_DRIVE;
 import static org.cryptomator.presentation.ui.TestUtil.LOCAL;
 import static org.cryptomator.presentation.ui.TestUtil.ONEDRIVE;
 import static org.cryptomator.presentation.ui.TestUtil.WEBDAV;
@@ -111,30 +110,6 @@ public class CloudsOperationsTest {
 		device.waitForIdle();
 
 		checkLoginResult("Dropbox", DROPBOX);
-	}
-
-	@Test
-	public void test03LoginGoogleDriveCloudLeadsToLoggedInGoogleDriveCloud() {
-		openCloudServices(device);
-
-		onView(withId(R.id.recyclerView)) //
-				.perform(actionOnItemAtPosition(GOOGLE_DRIVE, click()));
-
-		try {
-			device //
-					.findObject(new UiSelector().resourceId("android:id/text1")) //
-					.click();
-
-			device //
-					.findObject(new UiSelector().resourceId("android:id/button1")) //
-					.click();
-		} catch (UiObjectNotFoundException e) {
-			throw new AssertionError("GoogleDrive login failed");
-		}
-
-		device.waitForIdle();
-
-		checkLoginResult("Google Drive", GOOGLE_DRIVE);
 	}
 
 	@Test

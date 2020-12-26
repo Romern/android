@@ -31,7 +31,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.cryptomator.domain.executor.BackgroundTasks.awaitCompleted;
 import static org.cryptomator.presentation.ui.TestUtil.DROPBOX;
-import static org.cryptomator.presentation.ui.TestUtil.GOOGLE_DRIVE;
 import static org.cryptomator.presentation.ui.TestUtil.LOCAL;
 import static org.cryptomator.presentation.ui.TestUtil.ONEDRIVE;
 import static org.cryptomator.presentation.ui.TestUtil.WEBDAV;
@@ -60,7 +59,7 @@ public class VaultsOperationsTest {
 
 	@Parameterized.Parameters(name = "{1}")
 	public static Iterable<Object[]> data() {
-		return Arrays.asList(new Object[][] {{DROPBOX, "DROPBOX"}, {GOOGLE_DRIVE, "GOOGLE_DRIVE"}, {ONEDRIVE, "ONEDRIVE"}, {WEBDAV, "WEBDAV"}, {LOCAL, "LOCAL"}});
+		return Arrays.asList(new Object[][] {{DROPBOX, "DROPBOX"}, {ONEDRIVE, "ONEDRIVE"}, {WEBDAV, "WEBDAV"}, {LOCAL, "LOCAL"}});
 	}
 
 	public VaultsOperationsTest(Integer cloudId, String cloudName) {

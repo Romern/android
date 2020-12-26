@@ -106,14 +106,6 @@ dependencies {
 	// cloud
 	implementation dependencies.dropbox
 	implementation dependencies.msgraph
-	implementation(dependencies.googleApiServicesDrive) {
-		exclude module: 'guava-jdk5'
-		exclude module: 'httpclient'
-	}
-	implementation(dependencies.googleApiClientAndroid) {
-		exclude module: 'guava-jdk5'
-		exclude module: 'httpclient'
-	}
 
 	// rest
 	implementation dependencies.rxJava

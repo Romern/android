@@ -2,7 +2,6 @@ package org.cryptomator.data.cloud;
 
 import org.cryptomator.data.cloud.crypto.CryptoCloudContentRepositoryFactory;
 import org.cryptomator.data.cloud.dropbox.DropboxCloudContentRepositoryFactory;
-import org.cryptomator.data.cloud.googledrive.GoogleDriveCloudContentRepositoryFactory;
 import org.cryptomator.data.cloud.local.LocalStorageContentRepositoryFactory;
 import org.cryptomator.data.cloud.onedrive.OnedriveCloudContentRepositoryFactory;
 import org.cryptomator.data.cloud.webdav.WebDavCloudContentRepositoryFactory;
@@ -23,14 +22,12 @@ public class CloudContentRepositoryFactories implements Iterable<CloudContentRep
 
 	@Inject
 	public CloudContentRepositoryFactories(DropboxCloudContentRepositoryFactory dropboxFactory, //
-			GoogleDriveCloudContentRepositoryFactory googleDriveFactory, //
 			OnedriveCloudContentRepositoryFactory oneDriveFactory, //
 			CryptoCloudContentRepositoryFactory cryptoFactory, //
 			LocalStorageContentRepositoryFactory localStorageFactory, //
 			WebDavCloudContentRepositoryFactory webDavFactory) {
 
 		factories = asList(dropboxFactory, //
-				googleDriveFactory, //
 				oneDriveFactory, //
 				cryptoFactory, //
 				localStorageFactory, //

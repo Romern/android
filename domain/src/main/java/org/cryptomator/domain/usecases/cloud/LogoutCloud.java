@@ -2,7 +2,6 @@ package org.cryptomator.domain.usecases.cloud;
 
 import org.cryptomator.domain.Cloud;
 import org.cryptomator.domain.DropboxCloud;
-import org.cryptomator.domain.GoogleDriveCloud;
 import org.cryptomator.domain.OnedriveCloud;
 import org.cryptomator.domain.exception.BackendException;
 import org.cryptomator.domain.repository.CloudContentRepository;
@@ -32,12 +31,6 @@ class LogoutCloud {
 		if (cloud instanceof DropboxCloud) {
 			return DropboxCloud //
 					.aCopyOf((DropboxCloud) cloud) //
-					.withUsername(null) //
-					.withAccessToken(null) //
-					.build();
-		} else if (cloud instanceof GoogleDriveCloud) {
-			return GoogleDriveCloud //
-					.aCopyOf((GoogleDriveCloud) cloud) //
 					.withUsername(null) //
 					.withAccessToken(null) //
 					.build();

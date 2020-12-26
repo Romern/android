@@ -4,8 +4,6 @@ import android.Manifest
 import android.accounts.AccountManager
 import android.content.ActivityNotFoundException
 import com.dropbox.core.android.Auth
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
-import com.google.api.services.drive.DriveScopes
 import org.cryptomator.data.cloud.onedrive.OnedriveClientFactory
 import org.cryptomator.data.cloud.onedrive.graph.ClientException
 import org.cryptomator.data.cloud.onedrive.graph.ICallback
@@ -46,7 +44,6 @@ class AuthenticateCloudPresenter @Inject constructor( //
 
 	private val strategies = arrayOf( //
 			DropboxAuthStrategy(),  //
-			GoogleDriveAuthStrategy(),  //
 			OnedriveAuthStrategy(),  //
 			WebDAVAuthStrategy(),  //
 			LocalStorageAuthStrategy() //
@@ -158,62 +155,10 @@ class AuthenticateCloudPresenter @Inject constructor( //
 		}
 	}
 
-	private inner class GoogleDriveAuthStrategy : AuthStrategy {
-		private var authenticationStarted = false
-		override fun supports(cloud: CloudModel): Boolean {
-			return cloud.cloudType() == CloudTypeModel.GOOGLE_DRIVE
-		}
-
-		override fun resumed(intent: AuthenticateCloudIntent) {
-			if (!authenticationStarted) {
-				startAuthentication(intent)
-			}
-		}
-
-		private fun startAuthentication(intent: AuthenticateCloudIntent) {
-			showProgress(ProgressModel(ProgressStateModel.AUTHENTICATION))
-			authenticationStarted = true
-			if (intent.recoveryAction() != null) {
-				handleUserRecoverableAuthenticationException(intent)
-			} else {
-				chooseAccount(intent.cloud())
-			}
-		}
-
-		private fun handleUserRecoverableAuthenticationException(intent: AuthenticateCloudIntent) {
-			requestActivityResult(ActivityResultCallbacks.onUserRecoveryFinished(intent.cloud()), intent.recoveryAction())
-		}
-
-		private fun chooseAccount(cloud: CloudModel) {
-			val chooseAccountIntent = GoogleAccountCredential.usingOAuth2(context(), setOf(DriveScopes.DRIVE)).newChooseAccountIntent()
-			try {
-				requestActivityResult( //
-						ActivityResultCallbacks.onGoogleDriveAuthenticated(cloud),  //
-						chooseAccountIntent)
-			} catch (e: ActivityNotFoundException) {
-				view?.showMessage(R.string.error_play_services_not_available)
-				finish()
-			}
-		}
-	}
-
 	@Callback(dispatchResultOkOnly = false)
 	fun onUserRecoveryFinished(result: ActivityResult, cloud: CloudModel) {
 		if (result.isResultOk) {
 			succeedAuthenticationWith(cloud.toCloud())
-		} else {
-			failAuthentication(cloud.name())
-		}
-	}
-
-	@Callback(dispatchResultOkOnly = false)
-	fun onGoogleDriveAuthenticated(result: ActivityResult, cloud: CloudModel) {
-		if (result.isResultOk) {
-			val accountName = result.intent()?.extras?.getString(AccountManager.KEY_ACCOUNT_NAME)
-			succeedAuthenticationWith(GoogleDriveCloud.aCopyOf(cloud.toCloud() as GoogleDriveCloud) //
-					.withUsername(accountName) //
-					.withAccessToken(accountName) //
-					.build())
 		} else {
 			failAuthentication(cloud.name())
 		}

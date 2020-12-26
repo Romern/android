@@ -10,9 +10,6 @@ enum class CloudTypeModel(builder: Builder) {
 	DROPBOX(Builder("DROPBOX", R.string.cloud_names_dropbox) //
 			.withCloudImageResource(R.drawable.cloud_type_dropbox) //
 			.withCloudImageLargeResource(R.drawable.cloud_type_dropbox_large)),  //
-	GOOGLE_DRIVE(Builder("GOOGLE_DRIVE", R.string.cloud_names_google_drive) //
-			.withCloudImageResource(R.drawable.cloud_type_google_drive) //
-			.withCloudImageLargeResource(R.drawable.cloud_type_google_drive_large)),  //
 	ONEDRIVE(Builder("ONEDRIVE", R.string.cloud_names_onedrive) //
 			.withCloudImageResource(R.drawable.cloud_type_onedrive) //
 			.withCloudImageLargeResource(R.drawable.cloud_type_onedrive_large)),  //

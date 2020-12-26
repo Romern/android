@@ -25,7 +25,6 @@ class Upgrade0To1 extends DatabaseUpgrade {
 		createVaultEntityTable(db);
 
 		createDropboxCloud(db);
-		createGoogleDriveCloud(db);
 		createLocalStorageCloud(db);
 		createOnedriveCloud(db);
 	}
@@ -63,17 +62,6 @@ class Upgrade0To1 extends DatabaseUpgrade {
 		insertInto("CLOUD_ENTITY") //
 				.integer("_id", 1) //
 				.text("TYPE", CloudType.DROPBOX.name()) //
-				.text("ACCESS_TOKEN", null) //
-				.text("WEBDAV_URL", null) //
-				.text("USERNAME", null) //
-				.text("WEBDAV_CERTIFICATE", null) //
-				.executeOn(db);
-	}
-
-	private void createGoogleDriveCloud(Database db) {
-		insertInto("CLOUD_ENTITY") //
-				.integer("_id", 2) //
-				.text("TYPE", CloudType.GOOGLE_DRIVE.name()) //
 				.text("ACCESS_TOKEN", null) //
 				.text("WEBDAV_URL", null) //
 				.text("USERNAME", null) //
