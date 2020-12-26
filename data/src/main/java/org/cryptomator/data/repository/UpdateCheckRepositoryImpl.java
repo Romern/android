@@ -78,21 +78,6 @@ public class UpdateCheckRepositoryImpl implements UpdateCheckRepository {
 		return Optional.of(updateCheck);
 	}
 
-	@Nullable
-	@Override
-	public String getLicense() {
-		return database.load(UpdateCheckEntity.class, 1L).getLicenseToken();
-	}
-
-	@Override
-	public void setLicense(String license) {
-		final UpdateCheckEntity entity = database.load(UpdateCheckEntity.class, 1L);
-
-		entity.setLicenseToken(license);
-
-		database.store(entity);
-	}
-
 	@Override
 	public void update(File file) throws GeneralUpdateErrorException {
 		try {

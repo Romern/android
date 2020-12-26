@@ -7,7 +7,6 @@ import org.cryptomator.domain.Cloud;
 import org.cryptomator.domain.CloudType;
 import org.cryptomator.domain.OnedriveCloud;
 import org.cryptomator.domain.Vault;
-import org.cryptomator.domain.usecases.DoLicenseCheckUseCase;
 import org.cryptomator.domain.usecases.DoUpdateCheckUseCase;
 import org.cryptomator.domain.usecases.DoUpdateUseCase;
 import org.cryptomator.domain.usecases.GetDecryptedCloudForVaultUseCase;
@@ -124,8 +123,6 @@ public class VaultListPresenterTest {
 
 	private RemoveStoredVaultPasswordsUseCase removeStoredVaultPasswordsUseCase = Mockito.mock(RemoveStoredVaultPasswordsUseCase.class);
 
-	private DoLicenseCheckUseCase doLicenceCheckUsecase = Mockito.mock(DoLicenseCheckUseCase.class);
-
 	private DoUpdateCheckUseCase updateCheckUseCase = Mockito.mock(DoUpdateCheckUseCase.class);
 
 	private DoUpdateUseCase updateUseCase = Mockito.mock(DoUpdateUseCase.class);
@@ -159,7 +156,6 @@ public class VaultListPresenterTest {
 				saveVaultUseCase, //
 				changePasswordUseCase, //
 				removeStoredVaultPasswordsUseCase, //
-				doLicenceCheckUsecase, //
 				updateCheckUseCase, //
 				updateUseCase, //
 				networkConnectionCheck, //
