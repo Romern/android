@@ -14,13 +14,11 @@ import org.cryptomator.presentation.ui.activity.CreateVaultActivity;
 import org.cryptomator.presentation.ui.activity.EmptyDirIdFileInfoActivity;
 import org.cryptomator.presentation.ui.activity.BiometricAuthSettingsActivity;
 import org.cryptomator.presentation.ui.activity.ImagePreviewActivity;
-import org.cryptomator.presentation.ui.activity.LicensesActivity;
 import org.cryptomator.presentation.ui.activity.SetPasswordActivity;
 import org.cryptomator.presentation.ui.activity.SettingsActivity;
 import org.cryptomator.presentation.ui.activity.SharedFilesActivity;
 import org.cryptomator.presentation.ui.activity.SplashActivity;
 import org.cryptomator.presentation.ui.activity.TextEditorActivity;
-import org.cryptomator.presentation.ui.activity.LicenseCheckActivity;
 import org.cryptomator.presentation.ui.activity.VaultListActivity;
 import org.cryptomator.presentation.ui.activity.WebDavAddOrChangeActivity;
 import org.cryptomator.presentation.ui.fragment.AutoUploadChooseVaultFragment;
@@ -62,8 +60,6 @@ public interface ActivityComponent {
 	void inject(ChooseCloudServiceActivity chooseCloudServiceActivity);
 
 	void inject(SettingsActivity settingsActivity);
-
-	void inject(LicensesActivity licensesActivity);
 
 	void inject(VaultListFragment vaultListFragment);
 
@@ -112,6 +108,4 @@ public interface ActivityComponent {
 	void inject(AutoUploadChooseVaultActivity autoUploadChooseVaultActivity);
 
 	void inject(AutoUploadChooseVaultFragment autoUploadChooseVaultFragment);
-
-	void inject(LicenseCheckActivity licenseCheckActivity);
 }

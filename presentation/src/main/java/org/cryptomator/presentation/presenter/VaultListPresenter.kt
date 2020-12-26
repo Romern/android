@@ -16,7 +16,6 @@ import org.cryptomator.domain.Vault
 import org.cryptomator.domain.di.PerView
 import org.cryptomator.domain.exception.NetworkConnectionException
 import org.cryptomator.domain.exception.authentication.AuthenticationException
-import org.cryptomator.domain.exception.license.LicenseNotValidException
 import org.cryptomator.domain.exception.update.SSLHandshakePreAndroid5UpdateCheckException
 import org.cryptomator.domain.usecases.*
 import org.cryptomator.domain.usecases.cloud.GetRootFolderUseCase
@@ -29,7 +28,6 @@ import org.cryptomator.presentation.intent.Intents
 import org.cryptomator.presentation.model.*
 import org.cryptomator.presentation.model.mappers.CloudFolderModelMapper
 import org.cryptomator.presentation.service.AutoUploadService
-import org.cryptomator.presentation.ui.activity.LicenseCheckActivity
 import org.cryptomator.presentation.ui.activity.view.VaultListView
 import org.cryptomator.presentation.ui.dialog.*
 import org.cryptomator.presentation.util.FileUtil
@@ -55,7 +53,6 @@ class VaultListPresenter @Inject constructor( //
 		private val saveVaultUseCase: SaveVaultUseCase,  //
 		private val changePasswordUseCase: ChangePasswordUseCase,  //
 		private val removeStoredVaultPasswordsUseCase: RemoveStoredVaultPasswordsUseCase,  //
-		private val licenseCheckUseCase: DoLicenseCheckUseCase,  //
 		private val updateCheckUseCase: DoUpdateCheckUseCase,  //
 		private val updateUseCase: DoUpdateUseCase,  //
 		private val networkConnectionCheck: NetworkConnectionCheck,  //
@@ -101,32 +98,9 @@ class VaultListPresenter @Inject constructor( //
 			}
 			sharedPreferencesHandler.setScreenLockDialogAlreadyShown()
 		}
-		checkLicense()
-	}
-
-	private fun checkLicense() {
-		if (BuildConfig.FLAVOR == "license") {
-			licenseCheckUseCase //
-					.withLicense("") //
-					.run(object : NoOpResultHandler<LicenseCheck>() {
-						override fun onSuccess(licenseCheck: LicenseCheck) {
-							if (sharedPreferencesHandler.doUpdate()) {
-								checkForAppUpdates()
-							}
-						}
-
-						override fun onError(e: Throwable) {
-							var license: String? = ""
-							if (e is LicenseNotValidException) {
-								license = e.license
-							}
-							val intent = Intent(context(), LicenseCheckActivity::class.java)
-							intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-							intent.data = Uri.parse(String.format("app://cryptomator/%s", license))
-							context().startActivity(intent)
-						}
-					})
-		}
+		if (sharedPreferencesHandler.doUpdate()) {
+			checkForAppUpdates()
+		}	
 	}
 
 	private fun checkForAppUpdates() {
@@ -693,7 +667,6 @@ class VaultListPresenter @Inject constructor( //
 				removeStoredVaultPasswordsUseCase,  //
 				unlockVaultUseCase,  //
 				prepareUnlockUseCase,  //
-				licenseCheckUseCase,  //
 				updateCheckUseCase,  //
 				updateUseCase)
 	}

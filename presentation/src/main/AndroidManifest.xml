@@ -102,7 +102,6 @@
 
 		<!-- Settings -->
 		<activity android:name=".ui.activity.SettingsActivity" />
-		<activity android:name=".ui.activity.LicensesActivity" />
 		<activity android:name=".ui.activity.CloudSettingsActivity" />
 
 		<activity android:name=".ui.activity.WebDavAddOrChangeActivity" />
@@ -117,22 +116,6 @@
 		<activity
 			android:name=".ui.activity.ImagePreviewActivity"
 			android:theme="@style/FullscreenTheme" />
-
-		<activity
-			android:name=".ui.activity.LicenseCheckActivity"
-			android:launchMode="singleTask">
-			<intent-filter android:label="@string/fab_transformation_scrim_behavior">
-				<action android:name="android.intent.action.VIEW" />
-
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-
-				<data
-					android:scheme="cryptomator"
-					android:host="*" />
-			</intent-filter>
-		</activity>
-
 
 		<provider
 			android:name="androidx.core.content.FileProvider"

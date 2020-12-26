@@ -3,16 +3,6 @@
 	android:id="@+id/activityRootView">
 
 	<PreferenceCategory
-		android:key="license"
-		android:title="@string/screen_settings_license">
-
-		<Preference
-			android:enabled="false"
-			android:key="mail" />
-
-	</PreferenceCategory>
-
-	<PreferenceCategory
 		android:key="@string/screen_settings_section_general"
 		android:title="@string/screen_settings_section_general">
 
@@ -199,13 +189,6 @@
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/screen_settings_section_legal">
-
-		<Preference android:title="@string/screen_settings_licenses_label">
-			<intent
-				android:action="android.intent.action.MAIN"
-				android:targetClass="org.cryptomator.presentation.ui.activity.LicensesActivity"
-				android:targetPackage="org.cryptomator" />
-		</Preference>
 
 		<Preference android:title="@string/screen_settings_security_label">
 			<intent

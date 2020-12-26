@@ -7,8 +7,6 @@ import org.cryptomator.cryptolib.api.UnsupportedVaultFormatException
 import org.cryptomator.domain.di.PerView
 import org.cryptomator.domain.exception.*
 import org.cryptomator.domain.exception.authentication.AuthenticationException
-import org.cryptomator.domain.exception.license.LicenseNotValidException
-import org.cryptomator.domain.exception.license.NoLicenseAvailableException
 import org.cryptomator.domain.exception.update.GeneralUpdateErrorException
 import org.cryptomator.domain.exception.update.SSLHandshakePreAndroid5UpdateCheckException
 import org.cryptomator.presentation.R
@@ -35,8 +33,6 @@ class ExceptionHandlers @Inject constructor(private val context: Context, defaul
 		staticHandler(NoSuchCloudFileException::class.java, R.string.error_no_such_file)
 		staticHandler(IllegalFileNameException::class.java, R.string.error_export_illegal_file_name)
 		staticHandler(UnableToDecryptWebdavPasswordException::class.java, R.string.error_failed_to_decrypt_webdav_password)
-		staticHandler(LicenseNotValidException::class.java, R.string.dialog_enter_license_not_valid_content)
-		staticHandler(NoLicenseAvailableException::class.java, R.string.dialog_enter_license_no_content)
 		staticHandler(GeneralUpdateErrorException::class.java, R.string.error_general_update)
 		staticHandler(SSLHandshakePreAndroid5UpdateCheckException::class.java, R.string.error_general_update)
 		exceptionHandlers.add(MissingCryptorExceptionHandler())
